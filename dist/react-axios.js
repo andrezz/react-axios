@@ -1,96 +1,96 @@
-import { jsx as L } from "react/jsx-runtime";
-import { createContext as v, useContext as p, useState as a, useMemo as w } from "react";
-import y from "axios";
-const P = v(void 0);
-function A() {
-  const e = p(P);
-  if (!e) throw new Error("useAxiosInstance must be used within an AxiosProvider");
-  return e;
+import { jsx as w } from "react/jsx-runtime";
+import { createContext as y, useContext as A, useState as r, useMemo as C } from "react";
+import E from "axios";
+const v = y(void 0);
+function H() {
+  const t = A(v);
+  if (!t) throw new Error("useAxiosInstance must be used within an AxiosProvider");
+  return t;
 }
-function S({
-  children: e,
-  baseURL: s,
-  withCredentials: n
+function D({
+  children: t,
+  baseURL: n,
+  withCredentials: s
 }) {
-  const [o, u] = a(), x = (d, t) => {
-    u((r) => ({ ...r, [d]: t }));
-  }, g = (d) => {
-    u((t) => {
-      const r = { ...t };
-      return delete r[d], r;
+  const [o, c] = r(), g = (i, e) => {
+    c((u) => ({ ...u, [i]: e }));
+  }, l = (i) => {
+    c((e) => {
+      const u = { ...e };
+      return delete u[i], u;
     });
-  }, l = w(() => y.create({
-    baseURL: s,
-    withCredentials: n,
+  }, f = C(() => E.create({
+    baseURL: n,
+    withCredentials: s,
     headers: o
-  }), [s, n, o]);
-  return /* @__PURE__ */ L(P.Provider, { value: { instance: l, addHeader: x, removeHeader: g }, children: e });
+  }), [n, s, o]);
+  return /* @__PURE__ */ w(v.Provider, { value: { instance: f, addHeader: g, removeHeader: l }, children: t });
 }
-function i(e) {
-  const { instance: s } = A(), [n, o] = a(!1), [u, x] = a(), [g, l] = a(0);
-  return { data: u, isLoading: n, execute: async (t) => {
-    var r, h;
+function x(t) {
+  const { instance: n } = H(), [s, o] = r(!1), [c, g] = r(), [l, f] = r(0);
+  return { data: c, isLoading: s, execute: async (e) => {
+    var u, P;
     try {
       o(!0);
-      const c = await s.request({
-        url: e.path || t.path,
-        method: e.method,
-        ...["get", "delete"].includes(e.method.toLowerCase()) && {
-          params: t.data
+      const d = await n.request({
+        url: t.path || (e == null ? void 0 : e.path),
+        method: t.method,
+        ...["get", "delete"].includes(t.method.toLowerCase()) && {
+          params: e == null ? void 0 : e.data
         },
-        ...["post", "put"].includes(e.method.toLowerCase()) && {
-          data: t.data
+        ...["post", "put"].includes(t.method.toLowerCase()) && {
+          data: e == null ? void 0 : e.data
         },
-        ...t.responseType && { responseType: t.responseType },
-        onUploadProgress: (f) => {
-          if (f.total) {
-            const m = Math.round(f.loaded * 100 / f.total);
-            l(m), t.onProgress && t.onProgress(m);
+        ...(e == null ? void 0 : e.responseType) && { responseType: e.responseType },
+        onUploadProgress: (h) => {
+          if (h.total) {
+            const L = Math.round(h.loaded * 100 / h.total);
+            f(L), e != null && e.onProgress && e.onProgress(L);
           }
         }
       });
-      return t.onSuccess && t.onSuccess(c.data), x(c.data), o(!1), c.data;
-    } catch (c) {
-      t.onError && t.onError(((h = (r = c.response) == null ? void 0 : r.data) == null ? void 0 : h.message) || c.message), o(!1);
+      return e != null && e.onSuccess && e.onSuccess(d.data), g(d.data), o(!1), d.data;
+    } catch (d) {
+      e != null && e.onError && e.onError(((P = (u = d.response) == null ? void 0 : u.data) == null ? void 0 : P.message) || d.message), o(!1);
       return;
     }
-  }, progress: g };
+  }, progress: l };
 }
-function T(e) {
-  const { data: s, execute: n, isLoading: o } = i({
-    ...e,
+function M(t) {
+  const { data: n, execute: s, isLoading: o } = x({
+    ...t,
     method: "get"
   });
-  return { data: s, isLoading: o, execute: n };
+  return { data: n, isLoading: o, execute: s };
 }
-function q(e) {
-  const { data: s, execute: n, isLoading: o, progress: u } = i({
-    ...e,
+function j(t) {
+  const { data: n, execute: s, isLoading: o, progress: c } = x({
+    ...t,
     method: "post"
   });
-  return { data: s, isLoading: o, execute: n, progress: u };
+  return { data: n, isLoading: o, execute: s, progress: c };
 }
-function D(e) {
-  const { data: s, execute: n, isLoading: o } = i({
-    ...e,
+function G(t) {
+  const { data: n, execute: s, isLoading: o } = x({
+    ...t,
     method: "put"
   });
-  return { data: s, isLoading: o, execute: n };
+  return { data: n, isLoading: o, execute: s };
 }
-function M(e) {
-  const { data: s, execute: n, isLoading: o } = i({
-    ...e,
+function I(t) {
+  const { data: n, execute: s, isLoading: o } = x({
+    ...t,
     method: "delete"
   });
-  return { data: s, isLoading: o, execute: n };
+  return { data: n, isLoading: o, execute: s };
 }
 export {
-  P as AxiosContext,
-  S as AxiosProvider,
-  A as useAxios,
-  M as useDelete,
-  T as useGet,
-  q as usePost,
-  D as usePut,
-  i as useRequest
+  v as AxiosContext,
+  D as AxiosProvider,
+  H as useAxios,
+  I as useDelete,
+  M as useGet,
+  j as usePost,
+  G as usePut,
+  x as useRequest
 };

@@ -18,8 +18,8 @@ export declare function AxiosProvider({ children, baseURL, withCredentials, }: A
 
 export declare type AxiosProviderType = {
     baseURL: CreateAxiosDefaults["baseURL"];
-    withCredentials: CreateAxiosDefaults["withCredentials"];
-    children: ReactElement | ReactElement[];
+    withCredentials?: CreateAxiosDefaults["withCredentials"];
+    children?: ReactElement | ReactElement[];
 };
 
 export declare type ExecuteRequestProps<T, D> = {
@@ -34,34 +34,34 @@ export declare type ExecuteRequestProps<T, D> = {
 export declare function useAxios(): AxiosContextType;
 
 export declare function useDelete<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
-    data: D | undefined;
+    data: T | undefined;
     isLoading: boolean;
-    execute: (params: ExecuteRequestProps<T, D>) => Promise<D | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
 };
 
 export declare function useGet<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
-    data: D | undefined;
+    data: T | undefined;
     isLoading: boolean;
-    execute: (params: ExecuteRequestProps<T, D>) => Promise<D | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
 };
 
 export declare function usePost<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
-    data: D | undefined;
+    data: T | undefined;
     isLoading: boolean;
-    execute: (params: ExecuteRequestProps<T, D>) => Promise<D | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
     progress: number;
 };
 
 export declare function usePut<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
-    data: D | undefined;
+    data: T | undefined;
     isLoading: boolean;
-    execute: (params: ExecuteRequestProps<T, D>) => Promise<D | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
 };
 
 export declare function useRequest<T = any, D = any>(props: UseRequestProps): {
     data: D | undefined;
     isLoading: boolean;
-    execute: (params: ExecuteRequestProps<T, D>) => Promise<D | undefined>;
+    execute: (params?: ExecuteRequestProps<T, D>) => Promise<D | undefined>;
     progress: number;
 };
 

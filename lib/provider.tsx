@@ -4,8 +4,8 @@ import axios, { AxiosHeaderValue, CreateAxiosDefaults } from "axios";
 
 export type AxiosProviderType = {
   baseURL: CreateAxiosDefaults["baseURL"];
-  withCredentials: CreateAxiosDefaults["withCredentials"];
-  children: ReactElement | ReactElement[];
+  withCredentials?: CreateAxiosDefaults["withCredentials"];
+  children?: ReactElement | ReactElement[];
 };
 export function AxiosProvider({
   children,

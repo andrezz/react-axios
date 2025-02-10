@@ -24,34 +24,34 @@ export function useRequest<T = any, D = any>(props: UseRequestProps) {
   const [progress, setProgress] = useState(0);
 
   const execute = async (
-    params?: ExecuteRequestProps<T, D>
+    params: ExecuteRequestProps<T, D> = {}
   ) => {
     try {
       setLoading(true);
       const result = await instance.request<D>({
-        url: props.path || params?.path,
+        url: props.path || params.path,
         method: props.method,
         ...(["get", "delete"].includes(props.method.toLowerCase()) && {
-          params: params?.data,
+          params: params.data,
         }),
         ...(["post", "put"].includes(props.method.toLowerCase()) && {
-          data: params?.data,
+          data: params.data,
         }),
-        ...(params?.responseType && { responseType: params.responseType }),
+        ...(params.responseType && { responseType: params.responseType }),
         onUploadProgress: (event) => {
           if (event.total) {
             const value = Math.round((event.loaded * 100) / event.total);
             setProgress(value);
-            params?.onProgress && params.onProgress(value);
+            params.onProgress && params.onProgress(value);
           }
         },
       });
-      params?.onSuccess && params.onSuccess(result.data);
+      params.onSuccess && params.onSuccess(result.data);
       setData(result.data);
       setLoading(false);
       return result.data;
     } catch (err: any) {
-      params?.onError &&
+      params.onError &&
         params.onError(err.response?.data?.message || err.message);
       setLoading(false);
       return undefined;

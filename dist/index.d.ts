@@ -36,26 +36,26 @@ export declare function useAxios(): AxiosContextType;
 export declare function useDelete<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
     data: T | undefined;
     isLoading: boolean;
-    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T>) => Promise<T | undefined>;
 };
 
 export declare function useGet<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
     data: T | undefined;
     isLoading: boolean;
-    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T>) => Promise<T | undefined>;
 };
 
 export declare function usePost<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
     data: T | undefined;
     isLoading: boolean;
-    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T>) => Promise<T | undefined>;
     progress: number;
 };
 
 export declare function usePut<T = any, D = any>(props?: Omit<UseRequestProps, "method">): {
     data: T | undefined;
     isLoading: boolean;
-    execute: (params?: ExecuteRequestProps<D, T> | undefined) => Promise<T | undefined>;
+    execute: (params?: ExecuteRequestProps<D, T>) => Promise<T | undefined>;
 };
 
 export declare function useRequest<T = any, D = any>(props: UseRequestProps): {

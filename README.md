@@ -6,5 +6,5 @@ This template provides a minimal setup to get React working in Vite with HMR and
 ## Installation
 
 ```bash
-npm install https://github.com/andrezz/react-axios
+npm install @andrezz/react-axios
 ```

@@ -9,6 +9,10 @@
   ],
   "version": "0.0.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrezz/react-axios.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

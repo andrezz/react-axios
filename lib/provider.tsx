@@ -1,4 +1,4 @@
-import { ReactElement, useMemo, useState } from "react";
+import { ReactElement, useCallback, useMemo, useState } from "react";
 import { AxiosContext } from "./context";
 import axios, { AxiosHeaderValue, CreateAxiosDefaults } from "axios";
 
@@ -14,17 +14,17 @@ export function AxiosProvider({
 }: AxiosProviderType) {
   const [headers, setHeaders] = useState<CreateAxiosDefaults["headers"]>();
 
-  const addHeader = (name: string, value: AxiosHeaderValue) => {
+  const addHeader = useCallback((name: string, value: AxiosHeaderValue) => {
     setHeaders((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const removeHeader = (name: string) => {
+  const removeHeader = useCallback((name: string) => {
     setHeaders((prev) => {
       const rest: any = { ...prev };
       delete rest[name];
       return rest;
     });
-  };
+  }, []);
 
   const instance = useMemo(() => {
     return axios.create({

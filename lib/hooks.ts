@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useAxios } from "./context";
 import { ResponseType } from "axios";
 
@@ -23,7 +23,7 @@ export function useRequest<T = any, D = any>(props: UseRequestProps) {
   const [data, setData] = useState<D>();
   const [progress, setProgress] = useState(0);
 
-  const execute = async (
+  const execute = useCallback(async (
     params: ExecuteRequestProps<T, D> = {}
   ) => {
     try {
@@ -56,7 +56,7 @@ export function useRequest<T = any, D = any>(props: UseRequestProps) {
       setLoading(false);
       return undefined;
     }
-  };
+  },[]);
 
   return { data, isLoading, execute, progress };
 }
